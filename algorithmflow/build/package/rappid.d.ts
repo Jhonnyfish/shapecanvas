@@ -14,7 +14,7 @@ file, You can obtain one at http://jointjs.com/license/rappid_v2.txt
 import * as Backbone from 'backbone';
 
 export * from 'jointjs';
- 
+
 export as namespace joint;
 
 declare module 'jointjs' {
