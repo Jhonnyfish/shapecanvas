@@ -1,0 +1,33 @@
+{
+  "name": "rappid-plugin-visio",
+  "private": true,
+  "version": "3.5.0",
+  "homepage": "http://jointjs.com/about-rappid",
+  "author": {
+    "name": "client IO",
+    "url": "http://client.io"
+  },
+  "types": "dist/rappid-visio.d.ts",
+  "main": "dist/rappid-visio.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/clientIO/rappid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clientIO/rappid/issues"
+  },
+  "licenses": [
+    {
+      "type": "Rappid v2.0",
+      "url": "http://jointjs.com/license/rappid_v2.txt"
+    }
+  ],
+  "dependencies": {
+    "hot-formula-parser": "~3.0.2",
+    "jointjs": "~3.5.3",
+    "jszip": "~3.7.1",
+    "stream": "~0.0.2"
+  },
+  "scripts": {},
+  "devDependencies": {}
+}
