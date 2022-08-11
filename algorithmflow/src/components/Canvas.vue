@@ -1,5 +1,8 @@
 <template>
-    <div>
-        <h1>hello canvas</h1>
-    </div>
+<div>
+    <div class="toolbar-container"></div>
+    <div class="stencil-container"></div>
+    <div class="paper-container"></div>
+    <div class="inspector-container"></div>
+</div>
 </template>
