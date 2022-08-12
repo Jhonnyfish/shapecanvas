@@ -1,74 +1,29 @@
 <template>
 <div>
-    <div class="toolbar-container" ref="toolbar-container">工具条</div>
-    <div class="stencil-container" ref="stencil-container">模板</div>
-    <!-- <div class="paper-container" id="paper-container">画纸<div v-html=paperScrollerHTML></div></div> -->
-    <PaperCantainer></PaperCantainer>
-    <div class="inspector-container" ref="inspector-container">监视器</div>
+    <div class="toolbar-container"></div>
+    <div class="stencil-container"></div>
+    <div class="paper-container"></div>
+    <div class="inspector-container"></div>
 </div>
 </template>
 
 <script>
-import * as joint from '../../build/package/rappid'
-import PaperCantainer from './Paper.vue'
+import {init} from '../config/common.js'
+import * as joint from '../../build/package/rappid.js'
 
 export default {
     data() {
         return {
-            paper: null,
-            graph: null,
-            paperScroller: null,
-            paperScrollerHTML: null,
-        };
-    },
-    mounted() {
-        this.init();
-    },
-    methods: {
-        init() {
-            //joint.setTheme('dark')
-            //joint.setTheme('material')
-            joint.setTheme("modern");
-            //joint.setTheme('default')
-            this.graph = new joint.dia.Graph({}, {
-                cellNamespace: joint.shape
-            });
-            this.paper = new joint.dia.Paper({
-                width: 1000,
-                height: 1000,
-                gridSize: 10,
-                drawGrid: true,
-                model: this.graph,
-                defaultLink: this.defalutLink,
-                interactive: {
-                    linkMove: false
-                },
-                snapLinks: {
-                    radius: 70
-                },
-                defaultConnectionPoint: {
-                    name: "boundary"
-                },
-                cellViewNamespace: joint.shape
-            });
-            this.paperScroller = new joint.ui.PaperScroller({
-                paper: this.paper,
-                autoResizePaper: true,
-                cursor: "grab"
-            });
-            this.paperScrollerHTML = this.paperScroller.el.outerHTML;
-            this.paperScroller.render().center();
-        },
-        defalutLink(elementView, magnet) {
-            return new joint.shapes.standard.Link({
-                attrs: {
-                    line: {
-                        stroke: "white"
-                    }
-                }
-            });
+            joint : joint
         }
     },
-    components: { PaperCantainer }
+    mounted() {
+        this.joint.setTheme('modern')
+        init(this.joint)
+    },
+    methods: {
+
+    }
+
 }
 </script>
