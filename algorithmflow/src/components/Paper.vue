@@ -1,16 +1,11 @@
 <template>
-<div>
-    <div class="toolbar-container" ref="toolbar-container">工具条</div>
-    <div class="stencil-container" ref="stencil-container">模板</div>
-    <!-- <div class="paper-container" id="paper-container">画纸<div v-html=paperScrollerHTML></div></div> -->
-    <PaperCantainer></PaperCantainer>
-    <div class="inspector-container" ref="inspector-container">监视器</div>
+<div class="paper-container" id="paper-container">
+    <div v-html=paperScrollerHTML></div>
 </div>
 </template>
 
 <script>
 import * as joint from '../../build/package/rappid'
-import PaperCantainer from './Paper.vue'
 
 export default {
     data() {
@@ -19,20 +14,20 @@ export default {
             graph: null,
             paperScroller: null,
             paperScrollerHTML: null,
-        };
+        }
     },
     mounted() {
-        this.init();
+        this.init()
     },
     methods: {
         init() {
             //joint.setTheme('dark')
             //joint.setTheme('material')
-            joint.setTheme("modern");
+            joint.setTheme('modern')
             //joint.setTheme('default')
             this.graph = new joint.dia.Graph({}, {
                 cellNamespace: joint.shape
-            });
+            })
             this.paper = new joint.dia.Paper({
                 width: 1000,
                 height: 1000,
@@ -47,28 +42,30 @@ export default {
                     radius: 70
                 },
                 defaultConnectionPoint: {
-                    name: "boundary"
+                    name: 'boundary'
                 },
                 cellViewNamespace: joint.shape
-            });
+            })
+
             this.paperScroller = new joint.ui.PaperScroller({
                 paper: this.paper,
                 autoResizePaper: true,
-                cursor: "grab"
-            });
-            this.paperScrollerHTML = this.paperScroller.el.outerHTML;
-            this.paperScroller.render().center();
+                cursor: 'grab'
+            })
+            this.paperScrollerHTML = this.paperScroller.el.outerHTML
+            alert
+            this.paperScroller.render().center()
+
         },
         defalutLink(elementView, magnet) {
             return new joint.shapes.standard.Link({
                 attrs: {
                     line: {
-                        stroke: "white"
+                        stroke: 'white'
                     }
                 }
-            });
+            })
         }
-    },
-    components: { PaperCantainer }
+    }
 }
 </script>
