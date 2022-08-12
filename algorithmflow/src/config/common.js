@@ -6,7 +6,6 @@ export function init(joint) {
     // Graph    
     // -----
     alert('init')
-    console.log(joint)
     var graph = new joint.dia.Graph;
 
     // Paper & PaperScroller
