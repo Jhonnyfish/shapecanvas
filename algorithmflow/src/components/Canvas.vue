@@ -10,7 +10,7 @@
 <script>
 import {init} from '../config/common.js'
 import * as joint from '../../build/package/rappid.js'
-
+window.joint = joint
 export default {
     data() {
         return {

@@ -5,7 +5,6 @@
 export function init(joint) {
     // Graph    
     // -----
-    alert('init')
     var graph = new joint.dia.Graph;
 
     // Paper & PaperScroller
@@ -125,9 +124,9 @@ export function init(joint) {
     document.querySelector('.stencil-container').appendChild(stencil.el);
     stencil.render().load({
         myShapesGroup1: [{
-            type: 'standard.Rectangle'
+            type: 'standard.Rectangle',
         }, {
-            type: 'standard.Ellipse'
+            type: 'standard.Ellipse',
         }],
         myShapesGroup2: [{
             type: 'standard.Cylinder'
