@@ -1,7 +1,4 @@
 
-//joint.setTheme('dark');
-//joint.setTheme('material');
-//joint.setTheme('default');
 export function init(joint) {
     // Graph    
     // -----
@@ -17,9 +14,13 @@ export function init(joint) {
         drawGrid: true,
         model: graph, // Set graph as the model for paper
         defaultLink: function(elementView, magnet) {
-            return new joint.shapes.standard.Link({
-                attrs: { line: { stroke: 'white' }}
+            var link =  new joint.shapes.standard.Link({
+                attrs: {
+                     line: { stroke: 'white' }
+                }
             });
+            link.router('manhattan')
+            return link
         },
         interactive: { linkMove: false },
         snapLinks: { radius: 70 },
@@ -207,16 +208,16 @@ export function init(joint) {
 
     // Link Tools
     // ----------
-
+    // 指针在链接上释放时触发,显示工具箱
     paper.on('link:pointerup', function(linkView) {
         paper.removeTools();
         var toolsView = new joint.dia.ToolsView({
             name: 'my-link-tools',
             tools: [
-                new joint.linkTools.Vertices(),
+                // new joint.linkTools.Vertices(),
                 new joint.linkTools.SourceArrowhead(),
                 new joint.linkTools.TargetArrowhead(),
-                new joint.linkTools.Segments,
+                // new joint.linkTools.Segments,
                 new joint.linkTools.Remove({ offset: -20, distance: 40 })
             ]
         });
@@ -287,12 +288,12 @@ export function init(joint) {
     graph.addCell(myLink);
 
     // React on changes in the graph.
-    graph.on('change add remove', function() {
-        var diagramJsonString = JSON.stringify(graph.toJSON());
-        console.log('Diagram JSON', diagramJsonString);
-    });
-    graph.on('change:level', function(cell, level) {
-        var color = (level > 8) ? 'red' : 'white';
-        cell.prop('attrs/body/fill', color);
-    });
+    // graph.on('change add remove', function() {
+    //     var diagramJsonString = JSON.stringify(graph.toJSON());
+    //     console.log('Diagram JSON', diagramJsonString);
+    // });
+    // graph.on('change:level', function(cell, level) {
+    //     var color = (level > 8) ? 'red' : 'white';
+    //     cell.prop('attrs/body/fill', color);
+    // });
 }

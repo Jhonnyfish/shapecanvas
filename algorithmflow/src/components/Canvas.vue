@@ -18,7 +18,10 @@ export default {
         }
     },
     mounted() {
-        this.joint.setTheme('modern')
+        // joint.setTheme('modern')
+        joint.setTheme('dark');
+        //joint.setTheme('material');
+        //joint.setTheme('default');
         init(this.joint)
     },
     methods: {
