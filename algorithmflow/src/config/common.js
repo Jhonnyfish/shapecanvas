@@ -4,12 +4,7 @@ import { createStencil } from "./stencil";
 import { createToolbar } from "./toolbar";
 
 export function init(joint) {
-    // Graph    
-    // -----
-    var graph = new joint.dia.Graph;
-
-    // Paper & PaperScroller
-    // ---------------------
+    var graph = new joint.dia.Graph
 
     var paper = new joint.dia.Paper({
         width: 1000,
@@ -21,11 +16,12 @@ export function init(joint) {
             var link =  new joint.shapes.standard.Link({
                 attrs: {
                      line: { stroke: 'white' }
-                }
+                },
             });
             link.router('manhattan')
             return link
         },
+        linkPinning: false,//不允许线连接到空白处
         interactive: { linkMove: false },
         snapLinks: { radius: 70 },
         defaultConnectionPoint: { name: 'boundary' }
@@ -35,16 +31,14 @@ export function init(joint) {
         paper: paper,
         autoResizePaper: true,
         cursor: 'grab'
-    });
+    })
+
     document.querySelector('.paper-container').appendChild(paperScroller.el);
     paperScroller.render().center();
     
     defineMyShape()
     //创建左侧边栏
     createStencil(paperScroller)
-
-    // Inspector
-    // --------
     createInspector(paper)
 
     // Halo
@@ -75,8 +69,8 @@ export function init(joint) {
 
         halo.on('action:myCustomAction:pointerdown', function(evt) {
             alert('My Control Button Clicked!');
-        });
-    });
+        })
+    })
 
     // Link Tools
     // ----------
@@ -100,25 +94,15 @@ export function init(joint) {
         paper.removeTools();
     });
 
-    // Toolbar
-    // -------
     createToolbar(paperScroller,graph)
-
-
-
-    // Working With Diagrams Programmatically
-    // --------------------------------------
-
-    // Add new element to the graph.
     var myShape = createMyShape()
     graph.addCell(myShape)
 
     // Get element from the graph and change its properties.
     myShape = graph.getElements()[0];
-    myShape.prop('attrs/label/text', 'My Updated Shape');
-    myShape.prop('size/width', 150);
+    // myShape.prop('size/width', 150);
     myShape.prop('level', 2);
-    myShape.prop('attrs/body/fill', '#FE854F');
+    myShape.prop('attrs/body/fill', '#FFFF');
 
     // Create a clone of an element.
     var myShape2 = myShape.clone();
