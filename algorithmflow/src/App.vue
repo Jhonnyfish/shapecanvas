@@ -18,7 +18,7 @@ export default {
         }
     },
     mounted() {
-        // joint.setTheme('modern')
+        //joint.setTheme('modern')
         joint.setTheme('dark');
         //joint.setTheme('material');
         //joint.setTheme('default');

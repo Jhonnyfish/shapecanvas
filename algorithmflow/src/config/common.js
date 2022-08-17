@@ -18,7 +18,13 @@ export function init(joint) {
                      line: { stroke: 'white' }
                 },
             });
-            link.router('manhattan')
+            link.set('router',{
+                name: 'manhattan',
+                args:{
+                    step:20, 
+                    maximumLoops: 500
+                }
+            })
             return link
         },
         linkPinning: false,//不允许线连接到空白处

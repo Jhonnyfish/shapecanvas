@@ -300,8 +300,6 @@ export function defineMyShape(){
     
         markup: '<rect class="body"/><text class="question-text"/><g class="options"></g>',
         // optionMarkup: '<g class="option"><rect class="option-rect"/><path class="btn-remove-option" d="M0,0 15,0 15,5 0,5z"/><text class="option-text"/></g>',
-    
-        
     });
 }
 
