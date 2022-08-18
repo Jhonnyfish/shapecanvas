@@ -21,8 +21,11 @@ export function init(joint) {
             link.set('router',{
                 name: 'manhattan',
                 args:{
-                    step:20, 
-                    maximumLoops: 500
+                    step:10, //和papper的grid大小相等时最好
+                    maximumLoops: 500,//最大寻路循环次数，超出这个数字后就变成直连
+                    padding: 20, //障碍物填充
+                    maxAllowedDirectionChange: 90 ,//最大弯曲角度
+                    startDirections:['left','right']
                 }
             })
             return link
