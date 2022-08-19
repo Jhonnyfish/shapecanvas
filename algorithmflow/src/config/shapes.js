@@ -175,7 +175,6 @@ export function defineMyShape() {
         var textElement = V('<text><tspan></tspan></text>').node;
         var textSpan = textElement.firstChild;
         var textNode = document.createTextNode('');
-
         textSpan.appendChild(textNode);
         svgDocument.appendChild(textElement);
         document.body.appendChild(svgDocument);
@@ -195,12 +194,11 @@ export function defineMyShape() {
         var height = lines.length * (fontSize * 1.2);
 
         V(svgDocument).remove();
-
         return { width: width, height: height };
     };
     joint.dia.Element.define('myApp.Question', {
         optionHeight: 30,
-        questionHeight: 45,
+        questionHeight: 30,
         paddingBottom: 30,
         minWidth: 150,
         question: null,
@@ -210,7 +208,7 @@ export function defineMyShape() {
                     position: 'top',
                     attrs: {
                         circle: {
-                            magnet: 'passive',
+                            magnet: 'passive',//只可以被指向
                             stroke: 'white',
                             fill: '#feb663',
                             r: 14
@@ -252,10 +250,10 @@ export function defineMyShape() {
                 magnet: false
             },
             '.body': {
-                refWidth: '100%',
+                refWidth: '100%', //相对的宽度
                 refHeight: '100%',
-                rx: '1%',
-                ry: '2%',
+                rx: '1%', //圆角
+                ry: '1%',
                 stroke: 'none',
                 fill: {
                     type: 'linearGradient',
