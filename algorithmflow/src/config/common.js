@@ -1,4 +1,4 @@
-import { initHalo } from "./initAccessories";
+import { initHalo, initLinkTools } from "./initAccessories";
 import { createInspector } from "./inspector";
 import { createMyShape, defineMyShape } from "./shapes";
 import { createStencil } from "./stencil";
@@ -51,24 +51,7 @@ export function init(joint) {
     createStencil(paperScroller)
     createInspector(paper)
     initHalo(paper)
-
-    // Link Tools
-    // ----------
-    // 指针在链接上释放时触发,显示工具箱
-    paper.on('link:pointerup', function(linkView) {
-        paper.removeTools();
-        var toolsView = new joint.dia.ToolsView({
-            name: 'my-link-tools',
-            tools: [
-                // new joint.linkTools.Vertices(),
-                new joint.linkTools.SourceArrowhead(),
-                new joint.linkTools.TargetArrowhead(),
-                // new joint.linkTools.Segments,
-                new joint.linkTools.Remove({ offset: -20, distance: 40 })
-            ]
-        });
-        linkView.addTools(toolsView);
-    });
+    initLinkTools(paper)
 
     paper.on('blank:pointerdown', function() {
         paper.removeTools();
