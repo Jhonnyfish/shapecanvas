@@ -1,3 +1,4 @@
+import { initHalo } from "./initAccessories";
 import { createInspector } from "./inspector";
 import { createMyShape, defineMyShape } from "./shapes";
 import { createStencil } from "./stencil";
@@ -49,37 +50,7 @@ export function init(joint) {
     //创建左侧边栏
     createStencil(paperScroller)
     createInspector(paper)
-
-    // Halo
-    // ----
-
-    paper.on('element:pointerclick', function(elementView) {
-        var handles = [{
-            name: 'remove',
-            position: 'nw',
-            events: { pointerdown: 'removeElement' }
-        }, {
-            name: 'myCustomAction',
-            position: 'ne',
-            icon: 'data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7'
-        }];
-        if (!elementView.model.hasPorts()) {
-            // Only shapes without ports will have the "link" handle in the Halo control panel. Shapes with ports can be connected by "dragging" ports.
-            handles.push({
-                name: 'link',
-                position: 'e',
-                events: { pointerdown: 'startLinking', pointermove: 'doLink', pointerup: 'stopLinking' }
-            });
-        }
-        var halo = new joint.ui.Halo({
-            cellView: elementView,
-            handles: handles
-        }).render();
-
-        halo.on('action:myCustomAction:pointerdown', function(evt) {
-            alert('My Control Button Clicked!');
-        })
-    })
+    initHalo(paper)
 
     // Link Tools
     // ----------
