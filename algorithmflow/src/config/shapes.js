@@ -206,11 +206,11 @@ export function defineMyShape() {
         ports: {
             groups: {
                 in: {
-                    position: 'top',
+                    position: 'left',
                     attrs: {
                         circle: {
                             magnet: 'passive',//只可以被指向
-                            stroke: 'white',
+                            stroke: 'none',
                             fill: '#FFEFD5',
                             r: 10
                         }
@@ -227,10 +227,7 @@ export function defineMyShape() {
                         }
                     }
                 }
-            },
-            items: [{
-                group: 'in',
-            }]
+            }
         },
         attrs: {
             '.': {
@@ -244,8 +241,14 @@ export function defineMyShape() {
                 stroke: 'none',
                 fill: '#87CEFA'
             },
-            '.btn-add-option': {
+            '.btn-add-outport': {
                 refX: 120,
+                refDy: -22,
+                cursor: 'pointer',
+                fill: 'white'
+            },
+            '.btn-add-inport':{
+                refX: 10,
                 refDy: -22,
                 cursor: 'pointer',
                 fill: 'white'
@@ -259,7 +262,6 @@ export function defineMyShape() {
             '.options': {
                 refX: 0
             },
-
             // Text styling.
             text: {
                 fontFamily: 'Arial'
@@ -295,23 +297,7 @@ export function defineMyShape() {
         }
     }, {
 
-        markup: '<rect class="body"/><text class="question-text"/><g class="options"/><path class="btn-add-option" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
-        // markup: [{
-        //     tagName: 'rect',
-        //     selector: '.body'
-        // }, {
-        //     tagName: 'text',
-        //     selector: '.question-text'
-        // }, {
-        //     tagName: 'g',
-        //     selector: '.options'
-        // }, {
-        //     tagName: 'path',
-        //     selector: '.btn-add-option',
-        //     attributes: {
-        //         'd': 'M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z'
-        //     }
-        // }],
+        markup: '<rect class="body"/><text class="question-text"/><g class="options"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
         optionMarkup: '<g class="option"><rect class="option-rect"/><path class="btn-remove-option" d="M0,0 15,0 15,5 0,5z"/><text class="option-text"/></g>',
 
         //这是关于backnone的一个构造方法，在define的element被实例化的时候会调用构造方法
@@ -394,7 +380,7 @@ export function defineMyShape() {
             }).width;
             this.resize(Math.max(this.get('minWidth') || 150, width), height);
         },
-        addOption: function (option) {
+        addOutPort: function (option) {
 
             var options = JSON.parse(JSON.stringify(this.get('options')));
             options.push(option);
@@ -422,8 +408,9 @@ export function defineMyShape() {
     joint.shapes.myApp.QuestionView = joint.dia.ElementView.extend({
 
         events: {
-            'click .btn-add-option': 'onAddOption',
-            'click .btn-remove-option': 'onRemoveOption'
+            'click .btn-add-outport': 'onAddOutPort',
+            'click .btn-remove-option': 'onRemoveOption',
+            'click .btn-add-inport': 'onAddInPort'
         },
 
         presentationAttributes: joint.dia.ElementView.addPresentationAttributes({
@@ -465,11 +452,22 @@ export function defineMyShape() {
             this.update();
         },
 
-        onAddOption: function () {
+        onAddOutPort: function () {
+            var outcount = this.model.get('options').length+1
+            this.model.addOutPort({
+                id: _.uniqueId('out-'),
+                text: 'out ' + outcount,
+                style: 'out'
+                //todo 排序标识 index-display
+            });
+        },
 
-            this.model.addOption({
-                id: _.uniqueId('option-'),
-                text: 'Option ' + this.model.get('options').length
+        onAddInPort: function(){
+            var incount = this.model.get('options').length+1
+            this.model.addInPort({
+                id: _.uniqueId('in-'),
+                text: 'in ' + incount,
+                style: 'in'
                 //todo 排序标识 index-display
             });
         },
