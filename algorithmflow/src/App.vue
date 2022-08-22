@@ -9,8 +9,10 @@
 
 <script>
 import {init} from './config/common.js'
-import * as joint from './../build/package/rappid.js'
-window.joint = joint
+import { THEME } from './theme'
+import {getJoint} from './config/common'
+
+const joint = getJoint()
 export default {
     data() {
         return {
@@ -18,8 +20,9 @@ export default {
         }
     },
     mounted() {
+        joint.setTheme(THEME)
         //joint.setTheme('modern')
-        joint.setTheme('dark');
+        //joint.setTheme('dark');
         //joint.setTheme('material');
         //joint.setTheme('default');
         init(this.joint)

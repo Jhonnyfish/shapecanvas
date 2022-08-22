@@ -1,10 +1,16 @@
+import { LINK_COLOR } from "@/theme";
 import { initHalo, initLinkTools } from "./initAccessories";
 import { createInspector } from "./inspector";
-import { createMyShape, defineMyShape } from "./shapes";
+import { defineMyShape } from "./shapes";
 import { createStencil } from "./stencil";
 import { createToolbar } from "./toolbar";
+import * as joint from './../../build/package/rappid.js'
+export function getJoint(){
+    return joint
+}
 
-export function init(joint) {
+window.joint = joint
+export function init() {
     var graph = new joint.dia.Graph
 
     var paper = new joint.dia.Paper({
@@ -16,7 +22,7 @@ export function init(joint) {
         defaultLink: function(elementView, magnet) {
             var link =  new joint.shapes.standard.Link({
                 attrs: {
-                     line: { stroke: 'white' }
+                     line: { stroke: LINK_COLOR }
                 },
             });
             link.set('router',{
@@ -58,33 +64,11 @@ export function init(joint) {
     });
 
     createToolbar(paperScroller,graph)
-    var myShape = createMyShape()
-    graph.addCell(myShape)
-
-    // Get element from the graph and change its properties.
-    myShape = graph.getElements()[0];
-    // myShape.prop('size/width', 150);
-    myShape.prop('level', 2);
-    myShape.prop('attrs/body/fill', '#FFFF');
-
-    // Create a clone of an element.
-    var myShape2 = myShape.clone();
-    myShape2.translate(400, 0);
-    graph.addCell(myShape2);
-
-    // Create a link that connects two elements.
-    var myLink = new joint.shapes.standard.Link({
-        attrs: { line: { stroke: 'white' }},
-        source: { id: myShape.id, port: 'out1' },
-        target: { id: myShape2.id, port: 'in1' }
-    });
-    graph.addCell(myLink);
-
     // React on changes in the graph.
-    // graph.on('change add remove', function() {
-    //     var diagramJsonString = JSON.stringify(graph.toJSON());
-    //     console.log('Diagram JSON', diagramJsonString);
-    // });
+    graph.on('change add remove', function() {
+        var diagramJsonString = JSON.stringify(graph.toJSON());
+        console.log('Diagram JSON', diagramJsonString);
+    });
     // graph.on('change:level', function(cell, level) {
     //     var color = (level > 8) ? 'red' : 'white';
     //     cell.prop('attrs/body/fill', color);

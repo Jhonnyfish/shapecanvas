@@ -1,0 +1,417 @@
+{
+    "cells": [
+        {
+            "type": "myApp.MyShape",
+            "level": 2,
+            "ports": {
+                "groups": {
+                    "in": {
+                        "markup": [
+                            {
+                                "tagName": "rect",
+                                "selector": "portBody"
+                            }
+                        ],
+                        "z": -1,
+                        "attrs": {
+                            "portBody": {
+                                "magnet": true,
+                                "fill": "#FFFFFF",
+                                "width": 15,
+                                "height": 15,
+                                "x": -10,
+                                "y": -7
+                            }
+                        },
+                        "position": {
+                            "name": "left"
+                        },
+                        "label": {
+                            "position": {
+                                "name": "left"
+                            }
+                        }
+                    },
+                    "out": {
+                        "markup": [
+                            {
+                                "tagName": "circle",
+                                "selector": "portBody",
+                                "attributes": {
+                                    "r": 12
+                                }
+                            }
+                        ],
+                        "z": -1,
+                        "attrs": {
+                            "portBody": {
+                                "magnet": true,
+                                "fill": "#7C68FC"
+                            }
+                        },
+                        "position": {
+                            "name": "right"
+                        },
+                        "label": {
+                            "position": {
+                                "name": "right"
+                            }
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": "in1",
+                        "group": "in"
+                    },
+                    {
+                        "group": "out",
+                        "id": "out1"
+                    }
+                ]
+            },
+            "position": {
+                "x": 50,
+                "y": 50
+            },
+            "size": {
+                "width": 200,
+                "height": 100
+            },
+            "angle": 0,
+            "id": "c8e0d879-8f79-4566-91d1-ff332796a704",
+            "z": 1,
+            "attrs": {
+                "body": {
+                    "fill": "#FFFF"
+                },
+                "label": {
+                    "text": "My Shape"
+                }
+            }
+        },
+        {
+            "type": "myApp.MyShape",
+            "level": 2,
+            "ports": {
+                "groups": {
+                    "in": {
+                        "markup": [
+                            {
+                                "tagName": "rect",
+                                "selector": "portBody"
+                            }
+                        ],
+                        "z": -1,
+                        "attrs": {
+                            "portBody": {
+                                "magnet": true,
+                                "fill": "#FFFFFF",
+                                "width": 15,
+                                "height": 15,
+                                "x": -10,
+                                "y": -7
+                            }
+                        },
+                        "position": {
+                            "name": "left"
+                        },
+                        "label": {
+                            "position": {
+                                "name": "left"
+                            }
+                        }
+                    },
+                    "out": {
+                        "markup": [
+                            {
+                                "tagName": "circle",
+                                "selector": "portBody",
+                                "attributes": {
+                                    "r": 12
+                                }
+                            }
+                        ],
+                        "z": -1,
+                        "attrs": {
+                            "portBody": {
+                                "magnet": true,
+                                "fill": "#7C68FC"
+                            }
+                        },
+                        "position": {
+                            "name": "right"
+                        },
+                        "label": {
+                            "position": {
+                                "name": "right"
+                            }
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "id": "in1",
+                        "group": "in"
+                    },
+                    {
+                        "group": "out",
+                        "id": "out1"
+                    }
+                ]
+            },
+            "position": {
+                "x": 450,
+                "y": 50
+            },
+            "size": {
+                "width": 200,
+                "height": 100
+            },
+            "angle": 0,
+            "id": "16581152-d654-4e99-8167-e451c8027bae",
+            "z": 1,
+            "attrs": {
+                "body": {
+                    "fill": "#FFFF"
+                },
+                "label": {
+                    "text": "My Shape"
+                }
+            }
+        },
+        {
+            "type": "standard.Link",
+            "source": {
+                "id": "c8e0d879-8f79-4566-91d1-ff332796a704",
+                "port": "out1"
+            },
+            "target": {
+                "id": "16581152-d654-4e99-8167-e451c8027bae",
+                "port": "in1"
+            },
+            "id": "a2e1cc1b-b84a-427a-a08b-ba0f3cba985b",
+            "z": 2,
+            "attrs": {
+                "line": {
+                    "stroke": "white"
+                }
+            }
+        },
+        {
+            "type": "myApp.Question",
+            "optionHeight": 30,
+            "questionHeight": 30,
+            "paddingBottom": 30,
+            "minWidth": 150,
+            "question": "算法",
+            "ports": {
+                "groups": {
+                    "in": {
+                        "position": "left",
+                        "attrs": {
+                            "circle": {
+                                "magnet": "passive",
+                                "stroke": "none",
+                                "fill": "#FFEFD5",
+                                "r": 10
+                            }
+                        }
+                    },
+                    "out": {
+                        "position": "right",
+                        "attrs": {
+                            "circle": {
+                                "magnet": true,
+                                "stroke": "none",
+                                "fill": "#87CEFA",
+                                "r": 10
+                            }
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "group": "out",
+                        "id": "var1",
+                        "args": {
+                            "y": 45
+                        }
+                    },
+                    {
+                        "group": "in",
+                        "id": "var2",
+                        "args": {
+                            "y": 75
+                        }
+                    },
+                    {
+                        "group": "in",
+                        "id": "var3",
+                        "args": {
+                            "y": 105
+                        }
+                    },
+                    {
+                        "group": "out",
+                        "id": "out-132",
+                        "args": {
+                            "y": 135
+                        }
+                    },
+                    {
+                        "group": "out",
+                        "id": "out-133",
+                        "args": {
+                            "y": 165
+                        }
+                    },
+                    {
+                        "group": "out",
+                        "id": "out-134",
+                        "args": {
+                            "y": 195
+                        }
+                    }
+                ]
+            },
+            "position": {
+                "x": 310,
+                "y": 290
+            },
+            "size": {
+                "width": 150,
+                "height": 240
+            },
+            "angle": 0,
+            "inPorts": [
+                {
+                    "id": "in",
+                    "label": "In"
+                },
+                {
+                    "id": "in2",
+                    "label": "In2"
+                }
+            ],
+            "options": [
+                {
+                    "id": "var1",
+                    "text": "变量1",
+                    "style": "out"
+                },
+                {
+                    "id": "var2",
+                    "text": "变量2"
+                },
+                {
+                    "id": "var3",
+                    "text": "变量3"
+                },
+                {
+                    "id": "out-132",
+                    "text": "out 4",
+                    "style": "out"
+                },
+                {
+                    "id": "out-133",
+                    "text": "out 5",
+                    "style": "out"
+                },
+                {
+                    "id": "out-134",
+                    "text": "out 6",
+                    "style": "out"
+                }
+            ],
+            "id": "69bc8766-92cd-4916-a929-a3c6a9f0f41d",
+            "z": 3,
+            "attrs": {
+                ".options": {
+                    "refY": 30
+                },
+                ".question-text": {
+                    "text": "算法"
+                },
+                ".option-var1": {
+                    "transform": "translate(0, 0)",
+                    "dynamic": true
+                },
+                ".option-var1 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var1 .option-text": {
+                    "text": "变量1",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-var2": {
+                    "transform": "translate(0, 30)",
+                    "dynamic": true
+                },
+                ".option-var2 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var2 .option-text": {
+                    "text": "变量2",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-var3": {
+                    "transform": "translate(0, 60)",
+                    "dynamic": true
+                },
+                ".option-var3 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var3 .option-text": {
+                    "text": "变量3",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-out-132": {
+                    "transform": "translate(0, 90)",
+                    "dynamic": true
+                },
+                ".option-out-132 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-out-132 .option-text": {
+                    "text": "out 4",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-out-133": {
+                    "transform": "translate(0, 120)",
+                    "dynamic": true
+                },
+                ".option-out-133 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-out-133 .option-text": {
+                    "text": "out 5",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-out-134": {
+                    "transform": "translate(0, 150)",
+                    "dynamic": true
+                },
+                ".option-out-134 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-out-134 .option-text": {
+                    "text": "out 6",
+                    "dynamic": true,
+                    "refY": 15
+                }
+            }
+        }
+    ]
+}
