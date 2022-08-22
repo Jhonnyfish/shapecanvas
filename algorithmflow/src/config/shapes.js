@@ -254,7 +254,7 @@ export function defineMyShape() {
                 fill: 'white'
             },
             '.btn-remove-option': {
-                xAlignment: 10,
+                xAlignment: 20,
                 yAlignment: 13,
                 cursor: 'pointer',
                 fill: 'white'
@@ -269,7 +269,7 @@ export function defineMyShape() {
             '.option-text': {
                 fontSize: 11,
                 fill: '#4b4a67',
-                refX: 30,
+                refX: 50,
                 yAlignment: 'middle'
             },
             '.question-text': {
@@ -349,23 +349,21 @@ export function defineMyShape() {
             var questionHeight = this.get('questionHeight');
 
             _.each(options, function (option) {
-
                 var selector = '.option-' + option.id;
-
                 attrsUpdate[selector] = { transform: 'translate(0, ' + offsetY + ')', dynamic: true };
                 attrsUpdate[selector + ' .option-rect'] = { height: optionHeight, dynamic: true };
                 attrsUpdate[selector + ' .option-text'] = { text: option.text, dynamic: true, refY: optionHeight / 2 };
-
                 offsetY += optionHeight;
-
                 var portY = offsetY - optionHeight / 2 + questionHeight;
                 if (!this.getPort(option.id)) {
-                    this.addPort({ group: 'out', id: option.id, args: { y: portY } });
+                    if(option.style=='out')
+                        this.addPort({ group: 'out', id: option.id, args: { y: portY } });
+                    else
+                        this.addPort({ group: 'in', id: option.id, args: { y: portY } });
                 } else {
                     this.portProp(option.id, 'args/y', portY);
                 }
             }.bind(this));
-
             this.attr(attrsUpdate);
             this.autoresize();
         },
@@ -380,20 +378,19 @@ export function defineMyShape() {
             }).width;
             this.resize(Math.max(this.get('minWidth') || 150, width), height);
         },
-        addOutPort: function (option) {
+
+        addVirPort: function (option) {
 
             var options = JSON.parse(JSON.stringify(this.get('options')));
             options.push(option);
             this.set('options', options);
         },
-
         removeOption: function (id) {
 
             var options = JSON.parse(JSON.stringify(this.get('options')));
             this.removePort(id);
             this.set('options', _.without(options, _.find(options, { id: id })));
         },
-
         changeOption: function (id, option) {
 
             if (!option.id) {
@@ -431,7 +428,6 @@ export function defineMyShape() {
             // Create an SVG element representing one option. This element will
             // be cloned in order to create more options.
             this.elOption = V(this.model.optionMarkup);
-
             this.renderOptions();
         },
 
@@ -447,14 +443,13 @@ export function defineMyShape() {
                 this.$options.append(elOption.node);
 
             }.bind(this));
-
             // Apply `attrs` to the newly created SVG elements.
             this.update();
         },
 
         onAddOutPort: function () {
             var outcount = this.model.get('options').length+1
-            this.model.addOutPort({
+            this.model.addVirPort({
                 id: _.uniqueId('out-'),
                 text: 'out ' + outcount,
                 style: 'out'
@@ -464,7 +459,7 @@ export function defineMyShape() {
 
         onAddInPort: function(){
             var incount = this.model.get('options').length+1
-            this.model.addInPort({
+            this.model.addVirPort({
                 id: _.uniqueId('in-'),
                 text: 'in ' + incount,
                 style: 'in'
@@ -495,7 +490,7 @@ export function createMyShape2() {
         question: "算法",
         inPorts: [{ id: 'in', label: 'In' }, { id: 'in2', label: 'In2' }],
         options: [
-            { id: 'var1', text: '变量1' },
+            { id: 'var1', text: '变量1' ,style: 'out'},
             { id: 'var2', text: '变量2' },
             { id: 'var3', text: '变量3' }
         ]
