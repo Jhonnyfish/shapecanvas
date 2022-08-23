@@ -8,9 +8,8 @@
 </template>
 
 <script>
-import {init} from './config/common.js'
+import {init,getJoint} from './config/apps.js'
 import { THEME } from './theme'
-import {getJoint} from './config/common'
 
 const joint = getJoint()
 export default {

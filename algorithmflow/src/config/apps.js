@@ -4,7 +4,7 @@ import { createInspector } from "./inspector";
 import { defineMyShape } from "./shapes";
 import { createStencil } from "./stencil";
 import { createToolbar } from "./toolbar";
-import * as joint from './../../build/package/rappid.js'
+import * as joint from '../../build/package/rappid.js'
 export function getJoint(){
     return joint
 }
