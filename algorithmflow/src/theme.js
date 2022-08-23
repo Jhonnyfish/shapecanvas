@@ -1,5 +1,5 @@
 export const THEME = 'dark'
-export const LINK_COLOR = 'black'
+export const LINK_COLOR = 'white'
 export const GRID_SIZE = 1
 export const PADDING_L = GRID_SIZE * 2
 export const PADDING_S = GRID_SIZE
