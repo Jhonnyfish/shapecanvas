@@ -31,10 +31,10 @@ export function defineMyShape() {
     };
     joint.dia.Element.define('myApp.Algorithm', {
         optionHeight: 30,
-        questionHeight: 30,
+        algorithmHeight: 35,
         paddingBottom: 30,
         minWidth: 150,
-        question: null,
+        algorithm: null,
         ports: {
             groups: {
                 in: {
@@ -104,7 +104,7 @@ export function defineMyShape() {
                 refX: 50,
                 yAlignment: 'middle'
             },
-            '.question-text': {
+            '.algorithm-text': {
                 fill: 'white',
                 refX: '50%',
                 refY: 15,
@@ -129,7 +129,7 @@ export function defineMyShape() {
         }
     }, {
 
-        markup: '<rect class="body"/><text class="question-text"/><g class="options"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
+        markup: '<rect class="body"/><text class="algorithm-text"/><g class="options"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
         optionMarkup: '<g class="option"><rect class="option-rect"/><path class="btn-remove-option" d="M0,0 15,0 15,5 0,5z"/><text class="option-text"/></g>',
 
         //这是关于backnone的一个构造方法，在define的element被实例化的时候会调用构造方法
@@ -139,20 +139,20 @@ export function defineMyShape() {
             //在这个自定义的图形对象上注册事件
             //监听options，如果options发生任何变化，就执行函数
             this.on('change:options', this.onChangeOptions, this);
-            this.on('change:question', function () {
-                this.attr('.question-text/text', this.get('question') || '');
+            this.on('change:algorithm', function () {
+                this.attr('.algorithm-text/text', this.get('algorithm') || '');
                 this.autoresize();
             }, this);
 
-            this.on('change:questionHeight', function () {
-                this.attr('.options/refY', this.get('questionHeight'), { silent: true });
+            this.on('change:algorithmHeight', function () {
+                this.attr('.options/refY', this.get('algorithmHeight'), { silent: true });
                 this.autoresize();
             }, this);
 
             this.on('change:optionHeight', this.autoresize, this);
 
-            this.attr('.options/refY', this.get('questionHeight'), { silent: true });
-            this.attr('.question-text/text', this.get('question'), { silent: true });
+            this.attr('.options/refY', this.get('algorithmHeight'), { silent: true });
+            this.attr('.algorithm-text/text', this.get('algorithm'), { silent: true });
 
             this.onChangeOptions();
         },
@@ -178,7 +178,7 @@ export function defineMyShape() {
             // Collect new attrs for the new options.
             var offsetY = 0;
             var attrsUpdate = {};
-            var questionHeight = this.get('questionHeight');
+            var algorithmHeight = this.get('algorithmHeight');
 
             _.each(options, function (option) {
                 var selector = '.option-' + option.id;
@@ -186,7 +186,7 @@ export function defineMyShape() {
                 attrsUpdate[selector + ' .option-rect'] = { height: optionHeight, dynamic: true };
                 attrsUpdate[selector + ' .option-text'] = { text: option.text, dynamic: true, refY: optionHeight / 2 };
                 offsetY += optionHeight;
-                var portY = offsetY - optionHeight / 2 + questionHeight;
+                var portY = offsetY - optionHeight / 2 + algorithmHeight;
                 if (!this.getPort(option.id)) {
                     if(option.style=='out')
                         this.addPort({ group: 'out', id: option.id, args: { y: portY } });
@@ -204,9 +204,9 @@ export function defineMyShape() {
 
             var options = this.get('options') || [];
             var gap = this.get('paddingBottom') || 20;
-            var height = options.length * this.get('optionHeight') + this.get('questionHeight') + gap;
-            var width = joint.util.measureText(this.get('question'), {
-                fontSize: this.attr('.question-text/fontSize')
+            var height = options.length * this.get('optionHeight') + this.get('algorithmHeight') + gap;
+            var width = joint.util.measureText(this.get('algorithm'), {
+                fontSize: this.attr('.algorithm-text/fontSize')
             }).width;
             this.resize(Math.max(this.get('minWidth') || 150, width), height);
         },

@@ -1,0 +1,171 @@
+{
+    "cells": [
+        {
+            "type": "myApp.Algorithm",
+            "optionHeight": 30,
+            "algorithmHeight": 35,
+            "paddingBottom": 30,
+            "minWidth": 150,
+            "algorithm": "算法",
+            "ports": {
+                "groups": {
+                    "in": {
+                        "position": "left",
+                        "attrs": {
+                            "circle": {
+                                "magnet": "passive",
+                                "stroke": "none",
+                                "fill": "#FFEFD5",
+                                "r": 10
+                            }
+                        }
+                    },
+                    "out": {
+                        "position": "right",
+                        "attrs": {
+                            "circle": {
+                                "magnet": true,
+                                "stroke": "none",
+                                "fill": "#87CEFA",
+                                "r": 10
+                            }
+                        }
+                    }
+                },
+                "items": [
+                    {
+                        "group": "in",
+                        "id": "var1",
+                        "args": {
+                            "y": 50
+                        }
+                    },
+                    {
+                        "group": "in",
+                        "id": "var2",
+                        "args": {
+                            "y": 80
+                        }
+                    },
+                    {
+                        "group": "in",
+                        "id": "var3",
+                        "args": {
+                            "y": 110
+                        }
+                    },
+                    {
+                        "group": "out",
+                        "id": "out-27",
+                        "args": {
+                            "y": 140
+                        }
+                    }
+                ]
+            },
+            "position": {
+                "x": 400,
+                "y": 190
+            },
+            "size": {
+                "width": 150,
+                "height": 185
+            },
+            "angle": 0,
+            "inPorts": [
+                {
+                    "id": "in",
+                    "label": "In"
+                },
+                {
+                    "id": "in2",
+                    "label": "In2"
+                }
+            ],
+            "options": [
+                {
+                    "id": "var1",
+                    "text": "变量1",
+                    "style": "in"
+                },
+                {
+                    "id": "var2",
+                    "text": "变量2",
+                    "style": "in"
+                },
+                {
+                    "id": "var3",
+                    "text": "变量3",
+                    "style": "in"
+                },
+                {
+                    "id": "out-27",
+                    "text": "out 4",
+                    "style": "out"
+                }
+            ],
+            "id": "951cafa9-8aa6-49de-a909-14f0feaaf2dd",
+            "z": 1,
+            "attrs": {
+                ".options": {
+                    "refY": 35
+                },
+                ".algorithm-text": {
+                    "text": "算法"
+                },
+                ".option-var1": {
+                    "transform": "translate(0, 0)",
+                    "dynamic": true
+                },
+                ".option-var1 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var1 .option-text": {
+                    "text": "变量1",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-var2": {
+                    "transform": "translate(0, 30)",
+                    "dynamic": true
+                },
+                ".option-var2 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var2 .option-text": {
+                    "text": "变量2",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-var3": {
+                    "transform": "translate(0, 60)",
+                    "dynamic": true
+                },
+                ".option-var3 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-var3 .option-text": {
+                    "text": "变量3",
+                    "dynamic": true,
+                    "refY": 15
+                },
+                ".option-out-27": {
+                    "transform": "translate(0, 90)",
+                    "dynamic": true
+                },
+                ".option-out-27 .option-rect": {
+                    "height": 30,
+                    "dynamic": true
+                },
+                ".option-out-27 .option-text": {
+                    "text": "out 4",
+                    "dynamic": true,
+                    "refY": 15
+                }
+            }
+        }
+    ]
+}
