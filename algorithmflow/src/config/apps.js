@@ -65,10 +65,10 @@ export function init() {
 
     createToolbar(paperScroller,graph)
     // React on changes in the graph.
-    graph.on('change add remove', function() {
-        var diagramJsonString = JSON.stringify(graph.toJSON());
-        console.log('Diagram JSON', diagramJsonString);
-    });
+    // graph.on('change add remove', function() {
+    //     var diagramJsonString = JSON.stringify(graph.toJSON());
+    //     console.log('Diagram JSON', diagramJsonString);
+    // });
     // graph.on('change:level', function(cell, level) {
     //     var color = (level > 8) ? 'red' : 'white';
     //     cell.prop('attrs/body/fill', color);

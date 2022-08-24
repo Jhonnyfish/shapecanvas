@@ -5,9 +5,8 @@ export function createAlgorithm() {
         algorithm: "算法",
         inPorts: [{ id: 'in', label: 'In' }, { id: 'in2', label: 'In2' }],
         options: [
-            { id: 'var1', text: '变量1' ,style: 'in'},
-            { id: 'var2', text: '变量2' ,style: 'in'},
-            { id: 'var3', text: '变量3' ,style: 'in'}
+            { id: 'in-1', text: '输入1' ,style: 'in'},
+            { id: 'out-2', text: '输出2' ,style: 'out'},
         ]
     });
 }

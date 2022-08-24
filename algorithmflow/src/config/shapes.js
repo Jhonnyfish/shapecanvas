@@ -150,15 +150,12 @@ export function defineMyShape() {
             }, this);
 
             this.on('change:optionHeight', this.autoresize, this);
-
             this.attr('.options/refY', this.get('algorithmHeight'), { silent: true });
             this.attr('.algorithm-text/text', this.get('algorithm'), { silent: true });
-
             this.onChangeOptions();
         },
-
+        // callback functions
         onChangeOptions: function () {
-
             var options = this.get('options');
             var optionHeight = this.get('optionHeight');
 
@@ -179,10 +176,9 @@ export function defineMyShape() {
             var offsetY = 0;
             var attrsUpdate = {};
             var algorithmHeight = this.get('algorithmHeight');
-
             _.each(options, function (option) {
-                var selector = '.option-' + option.id;
-                attrsUpdate[selector] = { transform: 'translate(0, ' + offsetY + ')', dynamic: true };
+                    var selector = '.option-' + option.id;
+                    attrsUpdate[selector] = { transform: 'translate(0, ' + offsetY + ')', dynamic: true };
                 attrsUpdate[selector + ' .option-rect'] = { height: optionHeight, dynamic: true };
                 attrsUpdate[selector + ' .option-text'] = { text: option.text, dynamic: true, refY: optionHeight / 2 };
                 offsetY += optionHeight;
@@ -197,11 +193,11 @@ export function defineMyShape() {
                 }
             }.bind(this));
             this.attr(attrsUpdate);
+            this.autosort()
             this.autoresize();
         },
 
         autoresize: function () {
-
             var options = this.get('options') || [];
             var gap = this.get('paddingBottom') || 20;
             var height = options.length * this.get('optionHeight') + this.get('algorithmHeight') + gap;
@@ -210,7 +206,20 @@ export function defineMyShape() {
             }).width;
             this.resize(Math.max(this.get('minWidth') || 150, width), height);
         },
-
+        autosort: function(){
+            var options = this.get('options')||[];
+            var aftersort = []
+            _.each(options,function(option){
+                if(option.style=='in')
+                    aftersort.push(option)
+            })
+            _.each(options,function(option){
+                if(option.style=='out')
+                    aftersort.push(option)
+            })
+            var json = JSON.parse(JSON.stringify(aftersort))
+            this.set('options',json)
+        },
         addVirPort: function (option) {
 
             var options = JSON.parse(JSON.stringify(this.get('options')));
@@ -218,7 +227,6 @@ export function defineMyShape() {
             this.set('options', options);
         },
         removeOption: function (id) {
-
             var options = JSON.parse(JSON.stringify(this.get('options')));
             this.removePort(id);
             this.set('options', _.without(options, _.find(options, { id: id })));
@@ -236,7 +244,7 @@ export function defineMyShape() {
     });
     // View 派生自backbone.view
     joint.shapes.myApp.AlgorithmView = joint.dia.ElementView.extend({
-
+        //View Events
         events: {
             'click .btn-add-outport': 'onAddOutPort',
             'click .btn-remove-option': 'onRemoveOption',
