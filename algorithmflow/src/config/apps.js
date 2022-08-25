@@ -10,9 +10,7 @@ export function getJoint(){
 }
 
 window.joint = joint
-export function init() {
-    var graph = new joint.dia.Graph
-
+export function init(graph) {
     var paper = new joint.dia.Paper({
         width: 1000,
         height: 1000,
@@ -51,11 +49,11 @@ export function init() {
 
     document.querySelector('.paper-container').appendChild(paperScroller.el);
     paperScroller.render().center();
-    
+    createToolbar(paperScroller,graph)
     defineMyShape()
     //创建左侧边栏
-    createStencil(paperScroller)
-    createInspector(paper)
+    // createStencil(paperScroller)
+    // createInspector(paper)
     initHalo(paper)
     initLinkTools(paper)
 
@@ -63,7 +61,6 @@ export function init() {
         paper.removeTools();
     });
 
-    createToolbar(paperScroller,graph)
     // React on changes in the graph.
     // graph.on('change add remove', function() {
     //     var diagramJsonString = JSON.stringify(graph.toJSON());
