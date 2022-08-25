@@ -29,8 +29,10 @@ export default {
     init(graph);
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
-      alert(event.data);
-      renderEl(graph);
+      if(event.data == 'myApp.Algorithm'){
+        renderEl(graph);
+      }
+      console.log(event.clientX,event.clientY);
       // var obj = JSON.parse(event.data)
       // temp_dropObject = obj;
       //alert(obj)
