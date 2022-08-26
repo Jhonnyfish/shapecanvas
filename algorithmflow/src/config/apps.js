@@ -5,42 +5,46 @@ import { defineMyShape } from "./shapes";
 import { createStencil } from "./stencil";
 import { createToolbar } from "./toolbar";
 import * as joint from '../../build/package/rappid.js'
-export function getJoint(){
-    return joint
-}
 
 window.joint = joint
-export function init(graph) {
-    var paper = new joint.dia.Paper({
-        width: 1000,
-        height: 1000,
-        gridSize: 10,
-        drawGrid: true,
-        model: graph, // Set graph as the model for paper
-        defaultLink: function(elementView, magnet) {
-            var link =  new joint.shapes.standard.Link({
-                attrs: {
-                     line: { stroke: LINK_COLOR }
-                },
-            });
-            link.set('router',{
-                name: 'manhattan',
-                args:{
-                    step:10, //和papper的grid大小相等时最好
-                    maximumLoops: 500,//最大寻路循环次数，超出这个数字后就变成直连
-                    padding: 20, //障碍物填充
-                    maxAllowedDirectionChange: 90 ,//最大弯曲角度
-                    startDirections:['left','right']
-                }
-            })
-            return link
-        },
-        linkPinning: false,//不允许线连接到空白处
-        interactive: { linkMove: false },
-        snapLinks: { radius: 70 },
-        defaultConnectionPoint: { name: 'boundary' }
-    });
 
+export var graph = new joint.dia.Graph
+export var paper = new joint.dia.Paper({
+    width: 1000,
+    height: 1000,
+    gridSize: 10,
+    drawGrid: true,
+    model: graph, // Set graph as the model for paper
+    defaultLink: function(elementView, magnet) {
+        var link =  new joint.shapes.standard.Link({
+            attrs: {
+                 line: { stroke: LINK_COLOR }
+            },
+        });
+        link.set('router',{
+            name: 'manhattan',
+            args:{
+                step:10, //和papper的grid大小相等时最好
+                maximumLoops: 500,//最大寻路循环次数，超出这个数字后就变成直连
+                padding: 20, //障碍物填充
+                maxAllowedDirectionChange: 90 ,//最大弯曲角度
+                startDirections:['left','right']
+            }
+        })
+        return link
+    },
+    linkPinning: false,//不允许线连接到空白处
+    interactive: { linkMove: false },
+    snapLinks: { radius: 70 },
+    defaultConnectionPoint: { name: 'boundary' }
+});
+export function init() {
+    paper.on('blank:pointerup', function(evt) {
+        console.log(evt.clientX,evt.clientY)
+        var localPoint = paper.clientToLocalPoint(evt.clientX,evt.clientY)
+        console.log(localPoint)
+      });
+      
     var paperScroller = new joint.ui.PaperScroller({
         paper: paper,
         autoResizePaper: true,

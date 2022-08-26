@@ -1,4 +1,4 @@
-import { renderEl } from "./el-render";
+import {renderEl} from "./factory"
 export function createToolbar(paperScroller,graph){
     var toolbar = new joint.ui.Toolbar({
         groups: {
@@ -19,7 +19,8 @@ export function createToolbar(paperScroller,graph){
     toolbar.on({
         'clear:pointerclick': graph.clear.bind(graph),
         'add:pointerclick': function(){
-            renderEl(graph)
+            var msgCustom = {point:{x: 500, y: 200}, shapeType:'myApp.Algorithm'}
+            renderEl(msgCustom);
         }
     });
 

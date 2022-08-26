@@ -1,4 +1,4 @@
-import { createAlgorithm } from "./factory";
+// import { createAlgorithmWithName } from "./factory";
 import {defineStencilAlgorithm} from "./stencil.shapes"
 export function createStencil(paperScroller) {
     var stencil = new joint.ui.Stencil({
@@ -30,7 +30,7 @@ export function createStencil(paperScroller) {
     document.querySelector('.stencil-container').appendChild(stencil.el);
     defineStencilAlgorithm()
     
-    var model = createAlgorithm()
+    // var model = createAlgorithmWithName('')
     stencil.render().load({
         myShapesGroup1: [
             new joint.shapes.stencil.Algorithm,

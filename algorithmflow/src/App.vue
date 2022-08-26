@@ -8,38 +8,38 @@
 </template>
 
 <script>
-import { init, getJoint } from "./config/apps.js";
+import { init, paper } from "./config/apps.js";
 import { THEME } from "./theme";
-import {renderEl} from "./config/el-render";
-
-const joint = getJoint();
+import { renderEl } from "./config/factory";
 export default {
   data() {
     return {
-      joint: joint
+      joint: joint,
     };
   },
   mounted() {
-    var graph = new joint.dia.Graph
     joint.setTheme(THEME);
     //joint.setTheme('modern')
     //joint.setTheme('dark');
     //joint.setTheme('material');
     //joint.setTheme('default');
-    init(graph);
+    init();
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
-      if(event.data == 'myApp.Algorithm'){
-        renderEl(graph);
+      if (event.data == "myApp.Algorithm") {
+        console.log('111')
       }
-      console.log(event.clientX,event.clientY);
+      var msg  = event.data
+      var paperPoint = paper.clientToLocalPoint(msg.X, msg.Y)
+      var pointMsg = { point: paperPoint, shapeType: msg.ShapeType }
+      console.log(pointMsg)
+      renderEl(pointMsg)
       // var obj = JSON.parse(event.data)
       // temp_dropObject = obj;
       //alert(obj)
       // document.getElementById("box1").innerText +=  obj+"\n"
     });
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
