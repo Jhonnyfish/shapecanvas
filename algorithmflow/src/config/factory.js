@@ -1,12 +1,12 @@
 import {graph} from "./apps"
 export function renderEl(cellMsg) {
     if(cellMsg.shapeType=='myApp.Algorithm'){
-        var cellSize = { width: 100, height: 70 }
+        var cellSize = { width: 150, height: 125 }
         var centerX = cellMsg.point.x - cellSize.width/2
         var centerY = cellMsg.point.y - cellSize.height/2
         var model = new joint.shapes.myApp.Algorithm({
             position: {x:centerX,y:centerY},
-            size: cellSize,
+            // size: cellSize,
             algorithm: "算法",
             inPorts: [{ id: 'in', label: 'In' }, { id: 'in2', label: 'In2' }],
             options: [
