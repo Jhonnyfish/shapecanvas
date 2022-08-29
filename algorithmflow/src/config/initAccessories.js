@@ -1,4 +1,6 @@
-export function initHalo(paper){
+import {paper} from "./apps"
+
+export function initHalo(){
     paper.on('element:pointerup', function(elementView, evt) {
 
         var halo = new joint.ui.Halo({
@@ -15,7 +17,7 @@ export function initHalo(paper){
     }, this);
 }
 
-export function initLinkTools(paper){
+export function initLinkTools(){
     // 指针在链接上释放时触发,显示工具箱
     paper.on('link:pointerup', function(linkView) {
         paper.removeTools();

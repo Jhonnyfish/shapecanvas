@@ -64,7 +64,7 @@ export function init() {
   paper.on("blank:pointerdown", function () {
     paper.removeTools();
   });
-  initKeyBoard()
+  initKeyBoard(graph);
   // React on changes in the graph.
   // graph.on('change add remove', function() {
   //     var diagramJsonString = JSON.stringify(graph.toJSON());
