@@ -1,10 +1,10 @@
 import { LINK_COLOR } from "@/theme";
-import { initHalo, initLinkTools } from "./initAccessories";
-import { createInspector } from "./inspector";
-import { defineMyShape } from "./shapes";
-import { createStencil } from "./stencil";
-import { createToolbar } from "./toolbar";
-import { initKeyBoard } from "./keyboardController";
+import { initHalo, initLinkTools } from "../config/initAccessories";
+import { createInspector } from "../config/inspector";
+import { defineMyShape } from "../models/shapes";
+import { createStencil } from "../config/stencil";
+import { createToolbar } from "../config/toolbar";
+import { initKeyBoard } from "../config/keyboardController";
 import * as joint from "../../build/package/rappid.js";
 
 window.joint = joint;
@@ -15,7 +15,7 @@ export var paper = new joint.dia.Paper({
   gridSize: 10,
   drawGrid: true,
   model: graph, // Set graph as the model for paper
-  defaultLink: function (elementView, magnet) {
+  defaultLink: function () {
     var link = new joint.shapes.standard.Link({
       attrs: {
         line: { stroke: LINK_COLOR },
@@ -33,24 +33,18 @@ export var paper = new joint.dia.Paper({
     });
     return link;
   },
-  linkPinning: false, //不允许线连接到空白处
+  linkPinning: true, //不允许线连接到空白处
   interactive: { linkMove: false },
   snapLinks: { radius: 70 },
   defaultConnectionPoint: { name: "boundary" },
 });
 export function init() {
-  paper.on("blank:pointerup", function (evt) {
-    console.log(evt.clientX, evt.clientY);
-    var localPoint = paper.clientToLocalPoint(evt.clientX, evt.clientY);
-    console.log(localPoint);
-  });
-
   var paperScroller = new joint.ui.PaperScroller({
     paper: paper,
     autoResizePaper: true,
     cursor: "grab",
   });
-
+  initKeyBoard(graph);
   document.querySelector(".paper-container").appendChild(paperScroller.el);
   paperScroller.render().center();
   createToolbar(paperScroller, graph);
@@ -64,7 +58,7 @@ export function init() {
   paper.on("blank:pointerdown", function () {
     paper.removeTools();
   });
-  initKeyBoard(graph);
+
   // React on changes in the graph.
   // graph.on('change add remove', function() {
   //     var diagramJsonString = JSON.stringify(graph.toJSON());

@@ -1,4 +1,4 @@
-import {paper} from "./apps"
+import {paper} from "../view/apps"
 
 export function initHalo(){
     paper.on('element:pointerup', function(elementView, evt) {

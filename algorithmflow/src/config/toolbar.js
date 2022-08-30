@@ -1,4 +1,4 @@
-import {renderEl} from "./factory"
+import {renderEl} from "../models/factory"
 export function createToolbar(paperScroller,graph){
     var toolbar = new joint.ui.Toolbar({
         groups: {

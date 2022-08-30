@@ -1,4 +1,4 @@
-import {graph} from "./apps"
+import {graph} from "../view/apps"
 export function renderEl(cellMsg) {
     if(cellMsg.shapeType=='myApp.Algorithm'){
         var cellSize = { width: 150, height: 125 }

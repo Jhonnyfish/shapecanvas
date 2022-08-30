@@ -8,9 +8,9 @@
 </template>
 
 <script>
-import { init, paper } from "./config/apps.js";
+import { init, paper } from "./view/apps.js";
 import { THEME } from "./theme";
-import { renderEl } from "./config/factory";
+import { renderEl } from "./models/factory";
 export default {
   data() {
     return {
