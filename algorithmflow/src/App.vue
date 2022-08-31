@@ -24,6 +24,10 @@ export default {
     //joint.setTheme('material');
     //joint.setTheme('default');
     init();
+
+    //向本机发送消息
+    window.chrome.webview.postMessage('sss123')
+
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
       if (event.data == "myApp.Algorithm") {
@@ -39,6 +43,8 @@ export default {
       //alert(obj)
       // document.getElementById("box1").innerText +=  obj+"\n"
     });
+
+    
   },
   methods: {},
 };

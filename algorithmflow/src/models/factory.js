@@ -8,10 +8,9 @@ export function renderEl(cellMsg) {
             position: {x:centerX,y:centerY},
             // size: cellSize,
             algorithm: "算法",
-            inPorts: [{ id: 'in', label: 'In' }, { id: 'in2', label: 'In2' }],
             options: [
-                { id: 'in-1', text: '输入1' ,style: 'in'},
-                { id: 'out-2', text: '输出2' ,style: 'out'},
+                { id: 'in-1', text: '输入' ,style: 'in'},
+                { id: 'out-2', text: '输出' ,style: 'out'},
             ]
         });
         model.addTo(graph)

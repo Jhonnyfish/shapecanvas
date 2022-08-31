@@ -158,7 +158,6 @@ export function defineMyShape() {
         onChangeOptions: function () {
             var options = this.get('options');
             var optionHeight = this.get('optionHeight');
-
             // First clean up the previously set attrs for the old options object.
             // We mark every new attribute object with the `dynamic` flag set to `true`.
             // This is how we recognize previously set attributes.
@@ -171,13 +170,12 @@ export function defineMyShape() {
                     this.removeAttr(selector, { silent: true });
                 }
             }.bind(this));
-
             // Collect new attrs for the new options.
             var offsetY = 0;
             var attrsUpdate = {};
             var algorithmHeight = this.get('algorithmHeight');
             _.each(options, function (option) {
-                    var selector = '.option-' + option.id;
+                var selector = '.option-' + option.id;
                     attrsUpdate[selector] = { transform: 'translate(0, ' + offsetY + ')', dynamic: true };
                 attrsUpdate[selector + ' .option-rect'] = { height: optionHeight, dynamic: true };
                 attrsUpdate[selector + ' .option-text'] = { text: option.text, dynamic: true, refY: optionHeight / 2 };
@@ -221,7 +219,6 @@ export function defineMyShape() {
             this.set('options',json)
         },
         addVirPort: function (option) {
-
             var options = JSON.parse(JSON.stringify(this.get('options')));
             options.push(option);
             this.set('options', options);
@@ -236,7 +233,6 @@ export function defineMyShape() {
             if (!option.id) {
                 option.id = id;
             }
-
             var options = JSON.parse(JSON.stringify(this.get('options')));
             options[_.findIndex(options, { id: id })] = option;
             this.set('options', options);
@@ -276,7 +272,7 @@ export function defineMyShape() {
 
             this.$options.empty();
 
-            _.each(this.model.get('options'), function (option, index) {
+            _.each(this.model.get('options'), function (option) {
 
                 var className = 'option-' + option.id;
                 var elOption = this.elOption.clone().addClass(className);
@@ -292,7 +288,7 @@ export function defineMyShape() {
             var outcount = this.model.get('options').length+1
             this.model.addVirPort({
                 id: _.uniqueId('out-'),
-                text: 'out ' + outcount,
+                text: '输出',
                 style: 'out'
                 //todo 排序标识 index-display
             });
@@ -302,14 +298,13 @@ export function defineMyShape() {
             var incount = this.model.get('options').length+1
             this.model.addVirPort({
                 id: _.uniqueId('in-'),
-                text: 'in ' + incount,
+                text: '输入',
                 style: 'in'
                 //todo 排序标识 index-display
             });
         },
 
         onRemoveOption: function (evt) {
-
             this.model.removeOption(V(evt.target.parentNode).attr('option-id'));
         }
     });

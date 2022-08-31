@@ -10,7 +10,7 @@ import * as joint from "../../build/package/rappid.js";
 window.joint = joint;
 export var graph = new joint.dia.Graph();
 export var paper = new joint.dia.Paper({
-  width: 1000,
+  width: 800,
   height: 1000,
   gridSize: 10,
   drawGrid: true,
@@ -54,10 +54,6 @@ export function init() {
   // createInspector(paper)
   initHalo(paper);
   initLinkTools(paper);
-
-  paper.on("blank:pointerdown", function () {
-    paper.removeTools();
-  });
 
   // React on changes in the graph.
   // graph.on('change add remove', function() {

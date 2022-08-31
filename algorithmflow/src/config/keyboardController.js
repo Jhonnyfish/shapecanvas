@@ -52,7 +52,13 @@ function initializeSelection(keyboard){
         });
     }
   });
+  paper.on("blank:pointerdown", function () {
+    selection.collection.reset([])
+    paper.removeTools()
+  });
   paper.on('element:pointerdown',function(elementView,evt){
+    window.chrome.webview.postMessage('sss123')
+    console.log(elementView.model.toJSON())
     //按住control点击一个元素
     if(keyboard.isActive('ctrl',evt)){
       if(selection.collection.find(function(cell){return cell.isLink()})){
