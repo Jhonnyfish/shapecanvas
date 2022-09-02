@@ -7,10 +7,10 @@ export function renderEl(cellMsg) {
         var model = new joint.shapes.myApp.Algorithm({
             position: {x:centerX,y:centerY},
             // size: cellSize,
-            algorithm: "算法",
+            name: '算法',
             options: [
-                { id: 'in-1', text: '输入' ,style: 'in'},
-                { id: 'out-2', text: '输出' ,style: 'out'},
+                { id: 'in-1', name: '输入' ,style: 'in'},
+                { id: 'out-2', name: '输出' ,style: 'out'},
             ]
         });
         model.addTo(graph)
