@@ -59,7 +59,7 @@ function initializeSelection(keyboard){
   paper.on('element:pointerdown',function(elementView,evt){
     var modelJson = elementView.model.toJSON()
     var modelJsonString = JSON.stringify(modelJson)
-    // window.chrome.webview.postMessage(modelJsonString)
+    window.chrome.webview.postMessage(modelJsonString)
     console.log(modelJsonString)
     //按住control点击一个元素
     if(keyboard.isActive('ctrl',evt)){
