@@ -11,7 +11,8 @@
 import { graph, init, paper } from "./view/apps";
 import { THEME } from "./theme";
 import { renderEl } from "./models/factory";
-import {dropListen,model} from "./config/dropResolve"
+import {dropListen} from "./config/dropResolve"
+import {createHandlerInstance,handleMessage} from "./config/messageHandler"
 export default {
   data() {
     return {
@@ -28,9 +29,8 @@ export default {
     dropListen(graph)
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
-      if (event.data == "myApp.Algorithm") {
-        console.log("111");
-      }
+      handleMessage(createHandlerInstance("build"))
+      console.log(event.data)
       var msg = event.data;
       var paperPoint = paper.clientToLocalPoint(msg.X, msg.Y);
       var pointMsg = { point: paperPoint, shapeType: msg.ShapeType };
