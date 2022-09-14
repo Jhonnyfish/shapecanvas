@@ -29,8 +29,9 @@ export default {
     dropListen(graph)
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
-      handleMessage(createHandlerInstance("build"))
-      console.log(event.data)
+      var msg = JSON.parse(event.data)
+      console.log(msg)
+      handleMessage(createHandlerInstance(msg.head.messageType))
       var msg = event.data;
       var paperPoint = paper.clientToLocalPoint(msg.X, msg.Y);
       var pointMsg = { point: paperPoint, shapeType: msg.ShapeType };
