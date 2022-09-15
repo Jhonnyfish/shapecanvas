@@ -138,7 +138,7 @@ export function defineMyShape() {
     },
     {
       markup:
-        '<rect class="body"/><text class="algorithm-text"/><g class="options"/><path class="btn-fold-option" d="M0,0 15,0 15,5 0,5z"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
+        '<rect class="body"/><text class="algorithm-text"/><g class="options"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
       optionMarkup:
         '<g class="option"><rect class="option-rect"/><path class="btn-remove-option" d="M0,0 15,0 15,5 0,5z"/><text class="option-name"/></g>',
       //这是关于backnone的一个构造方法，在define的element被实例化的时候会调用构造方法

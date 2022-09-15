@@ -6,16 +6,16 @@ export var handleMessage = function (msg) {
 
 var BuildResolve = function () {};
 BuildResolve.prototype.handle = function () {
-  console.log("build instance");
+  graph.clear()
 };
 
 var GraphRes = function () {};
 GraphRes.prototype.handle = function () {
-  window.chrome.webview.postMessage(getMessageStr("graphJson",JSON.stringify(graph.toJSON(),null,4)))
+  window.chrome.webview.postMessage(getMessageStr("graphChange",JSON.stringify(graph.toJSON(),null,4)))
 };
 
 var messageDictionary = {
-  build: new BuildResolve(),
+  buildNew: new BuildResolve(),
   graphJson: new GraphRes()
 };
 
