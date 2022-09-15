@@ -30,12 +30,10 @@ export default {
     //监听本机发的消息
     window.chrome.webview.addEventListener("message", (event) => {
       var msg = JSON.parse(event.data)
-      console.log(msg)
-      handleMessage(createHandlerInstance(msg.head.messageType))
+      handleMessage(createHandlerInstance(msg))
       var msg = event.data;
       var paperPoint = paper.clientToLocalPoint(msg.X, msg.Y);
       var pointMsg = { point: paperPoint, shapeType: msg.ShapeType };
-      console.log(pointMsg);
       renderEl(pointMsg);
       // var obj = JSON.parse(event.data)
       // temp_dropObject = obj;
