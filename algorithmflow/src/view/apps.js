@@ -1,10 +1,9 @@
 import { LINK_COLOR } from "@/theme";
 import { initHalo, initLinkTools } from "../config/initAccessories";
-import { createInspector } from "../config/inspector";
 import { defineMyShape } from "../models/shapes";
-import { createStencil } from "../config/stencil";
 import { createToolbar } from "../config/toolbar";
 import { initKeyBoard } from "../config/keyboardController";
+import {getMessageStr} from "../config/messageHandler"
 import * as joint from "../../build/package/rappid.js";
 
 window.joint = joint;
@@ -54,7 +53,9 @@ export function init() {
   // createInspector(paper)
   initHalo(paper);
   initLinkTools(paper);
-
+  graph.on('change',function(){
+    window.chrome.webview.postMessage(getMessageStr("graphChange",JSON.stringify(graph.toJSON(),null,4)))
+  })
   // React on changes in the graph.
   // graph.on('change add remove', function() {
   //     var diagramJsonString = JSON.stringify(graph.toJSON());

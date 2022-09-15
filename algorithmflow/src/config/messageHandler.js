@@ -11,7 +11,7 @@ BuildResolve.prototype.handle = function () {
 
 var GraphRes = function () {};
 GraphRes.prototype.handle = function () {
-  window.chrome.webview.postMessage(getMessageStr("graphJson",JSON.stringify(graph.toJSON())))
+  window.chrome.webview.postMessage(getMessageStr("graphJson",JSON.stringify(graph.toJSON(),null,4)))
 };
 
 var messageDictionary = {
@@ -23,7 +23,7 @@ export function createHandlerInstance(messageType) {
   return messageDictionary[messageType];
 }
 
-function getMessageStr(messageType,messageBody){
+export function getMessageStr(messageType,messageBody){
     var messageHead = {
         messageType: messageType
     }

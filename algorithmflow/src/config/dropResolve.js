@@ -1,5 +1,5 @@
 import {paper} from "../view/apps"
-
+import {getMessageStr} from "./messageHandler"
 export function dropListen(graph) {
   window.addEventListener(
     "dragover",
@@ -20,7 +20,8 @@ export function dropListen(graph) {
       reader.onloadend = function () {
         var model = JSON.parse(reader.result);
         var obj = Object.assign(getPositionObj(e.clientX,e.clientY),model)
-        new joint.shapes.myApp.Algorithm(obj).addTo(graph);
+        new joint.shapes.myApp.Algorithm(obj).addTo(graph)
+        window.chrome.webview.postMessage(getMessageStr("graphChange",JSON.stringify(graph.toJSON(),null,4)))
       };
       reader.readAsText(file, "UTF-8");
     },
