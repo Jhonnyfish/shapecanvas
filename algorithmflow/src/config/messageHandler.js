@@ -1,4 +1,4 @@
-import { graph,paper} from "@/view/apps";
+import { graph,commandManager} from "@/view/apps";
 
 var msgBody = null
 export var handleMessage = function (msg) {
@@ -17,8 +17,8 @@ GraphJson.prototype.handle = function () {
 
 var GraphChange = function () {};
 GraphChange.prototype.handle = function () {
+  commandManager.reset()
   graph.fromJSON(JSON.parse(msgBody))
-  paper.model = graph
 };
 
 var messageDictionary = {

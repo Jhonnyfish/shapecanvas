@@ -27,8 +27,8 @@ export function defineMyShape() {
     V(svgDocument).remove();
     return { width: width, height: height };
   };
-  joint.dia.Element.define(
-    "myApp.Algorithm",
+ joint.dia.Element.define(
+    'myApp.Algorithm',
     {
       optionHeight: 30,
       algorithmHeight: 35,
@@ -144,7 +144,7 @@ export function defineMyShape() {
       //这是关于backnone的一个构造方法，在define的element被实例化的时候会调用构造方法
       initialize: function () {
         //在this对象，应用initialize()方法
-        joint.dia.Element.prototype.initialize.apply(this);
+        joint.dia.Element.prototype.initialize.apply(this,arguments);
         //在这个自定义的图形对象上注册事件
         //监听options，如果options发生任何变化，就执行函数
         this.on("change:options", this.onChangeOptions, this);

@@ -7,7 +7,10 @@ import {getMessageStr} from "../config/messageHandler"
 import * as joint from "../../build/package/rappid.js";
 
 window.joint = joint;
-export var graph = new joint.dia.Graph();
+export var graph = new joint.dia.Graph()
+export var commandManager = new joint.dia.CommandManager({
+  graph: graph
+})
 export var paper = new joint.dia.Paper({
   width: 800,
   height: 1000,
