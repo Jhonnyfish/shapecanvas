@@ -22,6 +22,7 @@ export function dropListen(graph) {
         var obj = Object.assign(getPositionObj(e.clientX,e.clientY),model)
         new joint.shapes.myApp.Algorithm(obj).addTo(graph)
         window.chrome.webview.postMessage(getMessageStr("graphChange",JSON.stringify(graph.toJSON(),null,4)))
+        window.chrome.webview.postMessage(getMessageStr("addModel",JSON.stringify(model)))
       };
       reader.readAsText(file, "UTF-8");
     },
