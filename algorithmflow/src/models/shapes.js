@@ -1,4 +1,5 @@
 import { V } from "../../build/package/rappid";
+import {getMessageStr} from "../config/messageHandler"
 export function defineMyShape() {
   joint.util.measureText = function (text, attrs) {
     var fontSize = parseInt(attrs.fontSize, 10) || 10;
@@ -100,7 +101,7 @@ export function defineMyShape() {
           fill: "white",
         },
         ".options": {
-          refX: 0,
+          refX: 0
         },
         // Text styling.
         text: {
@@ -111,6 +112,7 @@ export function defineMyShape() {
           fill: "#4b4a67",
           refX: 50,
           yAlignment: "middle",
+          cursor:'pointer'
         },
         ".algorithm-text": {
           fill: "white",
@@ -121,6 +123,7 @@ export function defineMyShape() {
           style: {
             textShadow: "1px 1px 0px gray",
           },
+          cursor:"pointer"
         },
 
         // Options styling.
@@ -133,7 +136,20 @@ export function defineMyShape() {
           fillOpacity: 0.5,
           fill: "white",
           refWidth: "100%",
+          cursor:"pointer"
         },
+        //Option selected
+        ".option-select":{
+          rx: 3,
+          ry: 3,
+          stroke: "white",
+          strokeWidth: 1,
+          strokeOpacity: 0.5,
+          fillOpacity: 0.5,
+          fill: "black",
+          refWidth: "100%",
+          cursor:"pointer"
+        }
       },
     },
     {
@@ -154,7 +170,7 @@ export function defineMyShape() {
             this.attr(".algorithm-text/text", this.get("name") || "");
             this.autoresize();
           },
-          this
+          this.on()
         );
 
         this.on(
@@ -167,7 +183,6 @@ export function defineMyShape() {
           },
           this
         );
-
         this.on("change:optionHeight", this.autoresize, this);
         this.attr(".options/refY", this.get("algorithmHeight"), {
           silent: true,
@@ -299,6 +314,10 @@ export function defineMyShape() {
       "click .btn-add-outport": "onAddOutPort",
       "click .btn-remove-option": "onRemoveOption",
       "click .btn-add-inport": "onAddInPort",
+      "mouseover .option-rect":"onMouseOverOption",
+      "mouseleave .option-rect":"onMouseleaveOption",
+      "mousedown .option-rect":"onMouseDonwOption",
+      
     },
 
     presentationAttributes: joint.dia.ElementView.addPresentationAttributes({
@@ -360,5 +379,24 @@ export function defineMyShape() {
     onRemoveOption: function (evt) {
       this.model.removeOption(V(evt.target.parentNode).attr("option-id"));
     },
+    onMouseOverOption:function(evt){
+      // console.log(V(evt.target.parentNode).attr("option-id"))
+      evt.target.setAttribute("fill","#B0C4DE")
+    },
+    onMouseleaveOption:function(evt){
+      // console.log(V(evt.target.parentNode).attr("option-id"))
+      evt.target.setAttribute("fill","white")
+    },
+    onMouseDonwOption:function(evt){
+      if(evt.button==2){
+        var msgBody = {
+          X:evt.clientX,
+          Y:evt.clientY,
+          Option:V(evt.target.parentNode).attr("option-id")
+        }
+        console.log(msgBody)
+        window.chrome.webview.postMessage(getMessageStr("rightClickOption",JSON.stringify(msgBody)))
+      }
+    }
   });
 }
