@@ -4,6 +4,11 @@ var msgBody = null
 export var handleMessage = function (msg) {
   msg.handle();
 };
+var RefreshModel = function () {};
+RefreshModel.prototype.handle = function () {
+  var options = JSON.parse(msgBody)
+  
+};
 
 var BuildResolve = function () {};
 BuildResolve.prototype.handle = function () {
@@ -24,7 +29,8 @@ GraphChange.prototype.handle = function () {
 var messageDictionary = {
   buildNew: new BuildResolve(),
   graphJson: new GraphJson(),
-  graphChange: new GraphChange()
+  graphChange: new GraphChange(),
+  refreshModel: new RefreshModel()
 };
 
 export function createHandlerInstance(msg) {

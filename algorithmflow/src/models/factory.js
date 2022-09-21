@@ -9,8 +9,8 @@ export function renderEl(cellMsg) {
             // size: cellSize,
             name: '算法',
             options: [
-                { id: 'in-1', name: '输入' ,style: 'in'},
-                { id: 'out-2', name: '输出' ,style: 'out'},
+                { id: 'in-1', name: '输入' ,style: 'in',code:"flag"},
+                { id: 'out-2', name: '输出' ,style: 'out',code:"area"},
             ]
         });
         model.addTo(graph)

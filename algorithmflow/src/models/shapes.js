@@ -36,8 +36,6 @@ export function defineMyShape() {
       paddingBottom: 30,
       minWidth: 150,
       name: null,
-      inputproperties: null,
-      outputproperties: null,
       ports: {
         groups: {
           in: {
@@ -161,6 +159,8 @@ export function defineMyShape() {
       initialize: function () {
         //在this对象，应用initialize()方法
         joint.dia.Element.prototype.initialize.apply(this,arguments);
+        console.log(arguments)
+        console.log(this)
         //在这个自定义的图形对象上注册事件
         //监听options，如果options发生任何变化，就执行函数
         this.on("change:options", this.onChangeOptions, this);
@@ -282,29 +282,29 @@ export function defineMyShape() {
         var options = JSON.parse(JSON.stringify(this.get("options")));
         options.push(option);
         this.set("options", options);
-        var optionProperty = {
-          id: option.id,
-          code: "Undefined",
-          name: "Undefined",
-          description: "Undefined",
-        };
-        if (option.style == "in")
-          this.attributes.inputproperties.push(optionProperty);
-        else this.attributes.outputproperties.push(optionProperty);
+        // var optionProperty = {
+        //   id: option.id,
+        //   code: "Undefined",
+        //   name: "Undefined",
+        //   description: "Undefined",
+        // };
+        // if (option.style == "in")
+        //   this.attributes.inputproperties.push(optionProperty);
+        // else this.attributes.outputproperties.push(optionProperty);
       },
       removeOption: function (id) {
         var options = JSON.parse(JSON.stringify(this.get("options")));
         this.removePort(id);
         this.set("options", _.without(options, _.find(options, { id: id })));
       },
-      changeOption: function (id, option) {
-        if (!option.id) {
-          option.id = id;
-        }
-        var options = JSON.parse(JSON.stringify(this.get("options")));
-        options[_.findIndex(options, { id: id })] = option;
-        this.set("options", options);
-      },
+      // changeOption: function (id, option) {
+      //   if (!option.id) {
+      //     option.id = id;
+      //   }
+      //   var options = JSON.parse(JSON.stringify(this.get("options")));
+      //   options[_.findIndex(options, { id: id })] = option;
+      //   this.set("options", options);
+      // },
     }
   );
   // View 派生自backbone.view
@@ -361,6 +361,7 @@ export function defineMyShape() {
       this.model.addOption({
         id: _.uniqueId("out-"),
         text: "输出",
+        code:"undefined",
         style: "out",
         //todo 排序标识 index-display
       });
@@ -371,6 +372,7 @@ export function defineMyShape() {
       this.model.addOption({
         id: _.uniqueId("in-"),
         text: "输入",
+        code:"undefined",
         style: "in",
         //todo 排序标识 index-display
       });
