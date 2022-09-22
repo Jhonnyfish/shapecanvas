@@ -7,12 +7,14 @@ export function renderEl(cellMsg) {
         var model = new joint.shapes.myApp.Algorithm({
             position: {x:centerX,y:centerY},
             // size: cellSize,
+            id:"123",
             name: '算法',
-            options: [
-                { id: 'in-1', name: '输入' ,style: 'in',code:"flag"},
-                { id: 'out-2', name: '输出' ,style: 'out',code:"area"},
-            ]
         });
         model.addTo(graph)
+        var json = [
+            { id: 'in-1', name: '输入1' ,style: 'in',code:"flag"},
+            { id: 'in-2', name: '输入1' ,style: 'in',code:"flag"},
+        ]
+        model.set("options",json)
     }
 }

@@ -1,13 +1,13 @@
 import { graph,commandManager} from "@/view/apps";
-
 var msgBody = null
 export var handleMessage = function (msg) {
   msg.handle();
 };
 var RefreshModel = function () {};
 RefreshModel.prototype.handle = function () {
-  var options = JSON.parse(msgBody)
-  
+  var refreshInfo = JSON.parse(msgBody)
+  var model = graph.getCell(refreshInfo.id)
+  model.set("options",refreshInfo.options)
 };
 
 var BuildResolve = function () {};

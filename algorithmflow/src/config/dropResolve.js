@@ -18,12 +18,15 @@ export function dropListen(graph) {
       // var centerX = e.clientX - cellSize.width / 2;
       // var centerY = e.clientY - cellSize.height / 2;
       reader.onloadend = function () {
-        console.log(reader)
-        var model = JSON.parse(reader.result);
-        var obj = Object.assign(getPositionObj(e.clientX,e.clientY),model)
-        new joint.shapes.myApp.Algorithm(obj).addTo(graph)
+        var json = JSON.parse(reader.result);
+        if(json.id==null){
+          delete json["id"]
+        }
+        var obj = Object.assign(getPositionObj(e.clientX,e.clientY),json)
+        var model = new joint.shapes.myApp.Algorithm(obj)
         window.chrome.webview.postMessage(getMessageStr("graphChange",JSON.stringify(graph.toJSON(),null,4)))
         window.chrome.webview.postMessage(getMessageStr("addModel",JSON.stringify(model)))
+        model.addTo(graph)
       };
       reader.readAsText(file, "UTF-8");
     },

@@ -1,3 +1,4 @@
+import { objectToString } from "@vue/shared";
 import { V } from "../../build/package/rappid";
 import {getMessageStr} from "../config/messageHandler"
 export function defineMyShape() {
@@ -19,7 +20,6 @@ export function defineMyShape() {
     _.each(lines, function (line) {
       textNode.data = line;
       var lineWidth = textSpan.getComputedTextLength();
-
       width = Math.max(width, lineWidth);
     });
 
@@ -155,12 +155,8 @@ export function defineMyShape() {
         '<rect class="body"/><text class="algorithm-text"/><g class="options"/><path class="btn-add-outport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/><path class="btn-add-inport" d="M5,0 10,0 10,5 15,5 15,10 10,10 10,15 5,15 5,10 0,10 0,5 5,5z"/>',
       optionMarkup:
         '<g class="option"><rect class="option-rect"/><path class="btn-remove-option" d="M0,0 15,0 15,5 0,5z"/><text class="option-name"/></g>',
-      //这是关于backnone的一个构造方法，在define的element被实例化的时候会调用构造方法
       initialize: function () {
-        //在this对象，应用initialize()方法
         joint.dia.Element.prototype.initialize.apply(this,arguments);
-        console.log(arguments)
-        console.log(this)
         //在这个自定义的图形对象上注册事件
         //监听options，如果options发生任何变化，就执行函数
         this.on("change:options", this.onChangeOptions, this);
@@ -391,12 +387,17 @@ export function defineMyShape() {
     },
     onMouseDonwOption:function(evt){
       if(evt.button==2){
+        var optionId = V(evt.target.parentNode).attr("option-id")
+        var options = this.model.attributes.options
+        var option = options.find(function(option){
+          return option.id= optionId
+        })
         var msgBody = {
           X:evt.clientX,
           Y:evt.clientY,
-          Option:V(evt.target.parentNode).attr("option-id")
+          id:this.model.id,
+          code:option.code
         }
-        console.log(msgBody)
         window.chrome.webview.postMessage(getMessageStr("rightClickOption",JSON.stringify(msgBody)))
       }
     }
