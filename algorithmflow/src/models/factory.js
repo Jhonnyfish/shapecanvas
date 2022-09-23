@@ -12,8 +12,8 @@ export function renderEl(cellMsg) {
         });
         model.addTo(graph)
         var json = [
-            { id: 'in-1', name: '输入1' ,style: 'in',code:"flag"},
-            { id: 'in-2', name: '输入1' ,style: 'in',code:"flag"},
+            { id: 'in-1', name: '输入1' ,style: 'in',code:"flag1"},
+            { id: 'in-2', name: '输入1' ,style: 'in',code:"flag2"},
         ]
         model.set("options",json)
     }

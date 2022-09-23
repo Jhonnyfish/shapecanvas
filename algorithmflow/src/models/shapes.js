@@ -390,7 +390,8 @@ export function defineMyShape() {
         var optionId = V(evt.target.parentNode).attr("option-id")
         var options = this.model.attributes.options
         var option = options.find(function(option){
-          return option.id= optionId
+          if(option.id==optionId)
+              return option
         })
         var msgBody = {
           X:evt.clientX,
