@@ -396,7 +396,8 @@ export function defineMyShape() {
           X:evt.clientX,
           Y:evt.clientY,
           id:this.model.id,
-          code:option.code
+          code:option.code,
+          style:option.style
         }
         window.chrome.webview.postMessage(getMessageStr("rightClickOption",JSON.stringify(msgBody)))
       }

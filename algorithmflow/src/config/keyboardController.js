@@ -58,9 +58,10 @@ function initializeSelection(keyboard){
     paper.removeTools()
   });
   paper.on('element:pointerdown',function(elementView,evt){
-    var modelJson = elementView.model.toJSON()
-    var modelJsonString = JSON.stringify(modelJson)
-    window.chrome.webview.postMessage(getMessageStr("selectModel",modelJsonString))
+    var selectModel = {
+      id: elementView.model.id
+    }
+    window.chrome.webview.postMessage(getMessageStr("selectModel",JSON.stringify(selectModel)))
     //按住control点击一个元素
     if(keyboard.isActive('ctrl',evt)){
       if(selection.collection.find(function(cell){return cell.isLink()})){
