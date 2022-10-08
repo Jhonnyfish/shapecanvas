@@ -1,4 +1,5 @@
 import { objectToString } from "@vue/shared";
+import { nodeName } from "jquery";
 import { V } from "../../build/package/rappid";
 import {getMessageStr} from "../config/messageHandler"
 export function defineMyShape() {
@@ -110,7 +111,8 @@ export function defineMyShape() {
           fill: "#4b4a67",
           refX: 50,
           yAlignment: "middle",
-          cursor:'pointer'
+          cursor:'pointer',
+          'pointer-events':'none',
         },
         ".algorithm-text": {
           fill: "white",
@@ -134,7 +136,7 @@ export function defineMyShape() {
           fillOpacity: 0.5,
           fill: "white",
           refWidth: "100%",
-          cursor:"pointer"
+          cursor:"pointer",
         },
         //Option selected
         ".option-select":{

@@ -73,6 +73,8 @@ function initializeSelection(keyboard){
       }
     });
   graph.on('remove',function(cell){
+    console.log(cell.id)
+    window.chrome.webview.postMessage(getMessageStr("cellRemove",cell.id))
     //当一个元素从graph中移除，也要使其从selection.collection中移除
     if(selection.collection.has(cell)){
       selection.collection.reset(selection.collection.models.filter(c=>c !==cell))
